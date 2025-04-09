@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  flask-app:
+    build: .
+    ports:
+      - "5001:5000"
+    environment:
+      DB_HOST: "host.docker.internal"  # Connect to the existing PostgreSQL
+      DB_PORT: "5432"
+      DB_NAME: "postgres"
+      DB_USER: "postgres"
+      DB_PASS: "mystrongpassword"
+    depends_on: []

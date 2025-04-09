@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-k8s-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-k8s-app
+  template:
+    metadata:
+      labels:
+        app: flask-k8s-app
+    spec:
+      containers:
+      - name: flask-k8s-app
+        image: flask-k8s-app:latest  # Use the updated image name
+        imagePullPolicy: Never  # Prevent Kubernetes from trying to pull the image
+        ports:
+          - containerPort: 5000
+            name: web # this ensures the port is named consistently between the Deployment and Service
+        env:
+          - name: DB_HOST
+            value: "postgres-service"   
+
+          - name: DB_USER
+            value: "postgres"
+
+          - name: DB_PASS
+            value: "mystrongpassword"
+
+          - name: DB_NAME
+            value: "my_postgres"
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-k8s-service
+  labels:
+    app: flask-k8s-app #to make it selectable by the ServiceMonitor
+spec:
+  selector:
+    app: flask-k8s-app
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      name: web #to match what the ServiceMonitor expects
+  type: ClusterIP

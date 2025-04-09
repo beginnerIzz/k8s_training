@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: flask-k8s-service  # Updated to reflect Kubernetes-specific deployment
   namespace: default
-  labels: # Add this section
+  labels: 
     app: flask-k8s-app
 spec:
   selector:

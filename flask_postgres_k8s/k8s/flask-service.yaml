@@ -2,6 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: flask-k8s-service  # Updated to reflect Kubernetes-specific deployment
+  namespace: default
+  labels: 
+    app: flask-k8s-app
 spec:
   selector:
     app: flask-k8s-app  # Matches the label in your Flask deployment

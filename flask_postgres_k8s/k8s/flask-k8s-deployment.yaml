@@ -39,20 +39,3 @@ spec:
           requests:
             cpu: "100m"
             memory: "128Mi"
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: flask-k8s-service
-  labels:
-    app: flask-k8s-app #to make it selectable by the ServiceMonitor
-spec:
-  selector:
-    app: flask-k8s-app
-  ports:
-    - protocol: TCP
-      port: 5000
-      targetPort: 5000
-      name: web #to match what the ServiceMonitor expects
-  type: ClusterIP

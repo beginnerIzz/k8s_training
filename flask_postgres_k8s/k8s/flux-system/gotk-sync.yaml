@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./k8s
+  path: ./flask_postgres_k8s/k8s
   prune: true
   sourceRef:
     kind: GitRepository

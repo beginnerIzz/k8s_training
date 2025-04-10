@@ -8,5 +8,5 @@ resources:
   - postgres-exporter.yaml
   - postgres-pvc.yaml 
   - postgres-service.yaml
-  - postgres-secret.yaml #DEPRECATED
+ # - postgres-secret.yaml #DEPRECATED
   

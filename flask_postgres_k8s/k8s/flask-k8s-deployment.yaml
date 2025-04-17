@@ -4,7 +4,7 @@ metadata:
   name: flask-k8s-app
   namespace: default
 spec:
-  replicas: 2
+  replicas: 0
   selector:
     matchLabels:
       app: flask-k8s-app

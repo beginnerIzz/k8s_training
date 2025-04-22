@@ -43,3 +43,6 @@ Phase 1.4-
 Instead of deploying a services by config kubenetes manifest, we are trying to package all of relevant services using helm-charts and deploy everything at once
 
 1. Create a template to deploy services using helm-charts
+
+To install using template
+   helm install <release-name> ./helmcharts
